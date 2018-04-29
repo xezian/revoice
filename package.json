@@ -1,7 +1,28 @@
 {
+  "name": "eciov",
+  "version": "1.0.0",
+  "description": "A game that involves reversing vocal audio clips",
+  "main": "index.js",
+  "repository": "git@github.com:xezian/eciov.git",
+  "author": "xezian <xezian@icloud.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "cd client && yarn",
+    "dev": "concurrently \"cd client && yarn start\" \"yarn start\"",
+    "start": "node server",
+    "lint": "eslint .",
+    "test": "cd server; mocha --timeout 10000 --exit",
+    "heroku-postbuild": "cd client && yarn run build"
+  },
   "dependencies": {
+    "body-parser": "^1.18.2",
     "express": "^4.16.3",
     "nekodb": "^2.2.0",
     "web-audio-api": "^0.2.2"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "concurrently": "^3.5.1",
+    "mocha": "^5.1.1"
   }
 }
