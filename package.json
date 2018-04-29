@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "express": "^4.16.3",
+    "nekodb": "^2.2.0",
+    "web-audio-api": "^0.2.2"
+  }
+}
