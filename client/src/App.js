@@ -1,18 +1,45 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import play from './play.svg';
+import record from './record.svg';
+import Footy from './components/Footy/Footy'
 import './App.css';
 
 class App extends Component {
+  state = {
+    logo:false,
+    record:false
+  }
+  componentDidMount() {
+    this.setState({logo:true,record:true})
+  }
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
+          <h1 className="App-title">eciov</h1>
+          {this.state.logo ? 
+          <img src={play} className="App-logo" alt="logo" /> :
+          null}
         </header>
         <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
+          eciov* is a simple + fun game to enjoy with your friends
         </p>
+        <p>
+          this is a normal p, the above p has className App-intro and looks <span className="App-intro">like this</span>
+          <br/>
+          can you see the difference? They are both here to help decide
+          <br/>
+          <span className="directions">
+          some simple direction / a call to action will go in here
+          <br/>
+          (to get started, click record and say something)
+          </span>
+        </p>
+        <h1 className="record-label">record:</h1>
+          {this.state.record ? 
+          <img src={record} alt="logo" /> :
+          null}
+          <Footy />
       </div>
     );
   }
