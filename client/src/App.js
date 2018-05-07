@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import play from './play.svg';
-import record from './record.svg';
-import Footy from './components/Footy/Footy'
+import Footy from './components/Footy/Footy';
+import Recorder from './components/Utils/Recorder';
 import './App.css';
 
 class App extends Component {
@@ -37,7 +37,7 @@ class App extends Component {
         </p>
         <h1 className="record-label">record:</h1>
           {this.state.record ? 
-          <img src={record} alt="logo" /> :
+          <Recorder /> :
           null}
           <Footy />
       </div>
