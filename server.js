@@ -12,6 +12,7 @@ const app = express();
 // bodyParser is my fav band
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(require('./routes'));
 
 // for production only! then the client/build directory has it all.
 if( process.env.NODE_ENV === 'production' ){

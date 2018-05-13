@@ -1,16 +1,46 @@
 import React, { Component } from 'react';
-import play from './play.svg';
+import { Record, Recording, Play, Playing } from './components/Utils/Audio/';
+import logo from './components/Utils/buttons/logo.svg'
 import Footy from './components/Footy/Footy';
-import Recorder from './components/Utils/Recorder';
 import './App.css';
 
 class App extends Component {
   state = {
     logo:false,
-    record:false
+    recordingState:null,
   }
   componentDidMount() {
-    this.setState({logo:true,record:true})
+    this.setState({logo:true,recordingState:"ready"})
+  }
+  handleRecordingState = () => {
+    switch(this.state.recordingState){
+      case "ready":
+        return <Record
+                  handleRecord={this.setRecordingState}
+                  />
+        break;
+      case "recording":
+        return <Recording
+                  handleRecording={this.setRecordingState}
+                  />
+        break;
+      case "recorded":
+        return <Play
+                  handlePlay={this.setRecordingState}
+                  />
+        break;
+      case "playing":
+        return <Playing
+                  handlePlaying={this.setRecordingState} 
+                  />
+        break;
+      default:
+        return <h2>Unknown recordingState</h2>
+        break;
+    }
+  }
+  setRecordingState = (which) => {
+    this.setState({recordingState:which});
   }
   render() {
     return (
@@ -18,7 +48,7 @@ class App extends Component {
         <header className="App-header">
           <h1 className="App-title">eciov</h1>
           {this.state.logo ? 
-          <img src={play} className="App-logo" alt="logo" /> :
+          <img src={logo} className="App-logo" alt="logo" /> :
           null}
         </header>
         <p className="App-intro">
@@ -35,10 +65,8 @@ class App extends Component {
           (to get started, click record and say something)
           </span>
         </p>
-        <h1 className="record-label">record:</h1>
-          {this.state.record ? 
-          <Recorder /> :
-          null}
+        <h1 className="record-label">record / stop / play </h1>
+          {this.handleRecordingState()}
           <Footy />
       </div>
     );
