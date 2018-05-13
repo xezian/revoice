@@ -3,8 +3,10 @@ const clipsController = require('../../controllers/clipsController');
 
 // Matches with "/api/clips"
 router
-  .get('/', clipsController.retrieve)
-  .post('/:id', clipsController.create)
+  .get('/', clipsController.retrieveAll)
+  .get('/:id', clipsController.retrieveOne)
+  .post('/', clipsController.create)
+  .post('/:id', clipsController.attempt)
   .delete('/:id', clipsController.remove);
 
 module.exports = router;

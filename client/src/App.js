@@ -13,31 +13,32 @@ class App extends Component {
     this.setState({logo:true,recordingState:"ready"})
   }
   handleRecordingState = () => {
+    let rtnVar;
     switch(this.state.recordingState){
       case "ready":
-        return <Record
+        rtnVar = <Record
                   handleRecord={this.setRecordingState}
-                  />
+                  />;
         break;
       case "recording":
-        return <Recording
+        rtnVar = <Recording
                   handleRecording={this.setRecordingState}
-                  />
+                  />;
         break;
       case "recorded":
-        return <Play
+        rtnVar = <Play
                   handlePlay={this.setRecordingState}
-                  />
+                  />;
         break;
       case "playing":
-        return <Playing
+        rtnVar = <Playing
                   handlePlaying={this.setRecordingState} 
-                  />
+                  />;
         break;
       default:
-        return <h2>Unknown recordingState</h2>
-        break;
+        rtnVar = <h2>Unknown recordingState</h2>;
     }
+    return rtnVar;
   }
   setRecordingState = (which) => {
     this.setState({recordingState:which});

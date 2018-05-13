@@ -1,10 +1,19 @@
 import axios from 'axios';
 
 export default {
-    primaryClip: (audioChunks) => {
-        axios.post('/api/clips', {audioChunks});
+    primaryClip: (clipUrl) => {
+        axios.post('/api/clips', {clipUrl});
     },
-    getPrimary: (id) => {
-        axios.get('/api/clips', {id});
+    attempt: (id, clipUrl) => {
+        axios.post(`/api/clips/${id}`, {clipUrl});
     },
+    getOne: (id) => {
+        axios.get(`/api/clips/${id}`);
+    },
+    getAll: () => {
+        axios.get('/api/clips');
+    },
+    delete: () => {
+        axios.delete(`/api/clips/${id}`)
+    }
 }
