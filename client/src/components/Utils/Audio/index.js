@@ -1,6 +1,3 @@
-import Play from './Play';
-import Playing from './Playing';
-import Record from './Record';
-import Recording from './Recording';
+import Recorderator from './Recorderator.js';
 
-export { Play, Playing, Record, Recording };
+export { Recorderator }
