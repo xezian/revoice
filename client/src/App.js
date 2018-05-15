@@ -9,21 +9,15 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <h1 className="App-title">eciov</h1>
+          <h1>revoice</h1>
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <p className="App-intro">
+        <p>
           eciov* is a simple + fun game to enjoy with your friends
         </p>
         <p>
-          this is a normal p, the above p has className App-intro and looks <span className="App-intro">like this</span>
-          <br/>
-          can you see the difference? They are both here to help decide
-          <br/>
           <span className="directions">
-          some simple direction / a call to action will go in here
-          <br/>
-          (to get started, click record and say something)
+          to get started, click record and say something
           </span>
         </p>
         <h1 className="record-label">record / stop / play </h1>
