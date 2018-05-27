@@ -36,6 +36,11 @@ class Recorderator extends Component {
   
     onStart=() => {
       console.log('You can tap into the onStart callback');
+      setTimeout(() => {
+        console.log('stop time')
+        this.stopRecording();
+        this.setRecordingState("recorded");
+      }, 3000);
     }
   
     onStop= (blobObject) => {
@@ -60,9 +65,7 @@ class Recorderator extends Component {
         case "recording":
             rtnVar =<Recording
                             startRecording={this.startRecording}
-                            stopRecording={this.stopRecording}
                             audioBitsPerSecond= {128000}
-                            handleRecording={this.setRecordingState}
                             onStart={this.onStart}
                             onStop={this.onStop}
                             record={this.state.record}

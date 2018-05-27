@@ -29,22 +29,14 @@ export default class Recording extends Component {
       });
     }
   }
-  stopRecordingSoon = () => {
-    setTimeout(() => {
-      console.log('stop time')
-      this.props.stopRecording();
-      this.props.handleRecording("recorded");
-    }, 3000);
-  }
   render() {
-    const { record, onStop } = this.props;
+    const { record, onStop, onStart } = this.props;
     const { microphoneRecorder, analyzer } = this.state;
 
     if(record) {
       if(microphoneRecorder) {
         console.log('recording.js start');
-        microphoneRecorder.startRecording();
-        this.stopRecordingSoon();
+        microphoneRecorder.startRecording(onStart);
       }
       return <div>you know it</div>;
     } else {
