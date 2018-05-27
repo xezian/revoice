@@ -1,5 +1,14 @@
-const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-const analyser = audioCtx.createAnalyser();
+const audioCtx = whichAudioContext();
+
+function whichAudioContext() {
+  if (window.AudioContext) {
+    return new window.AudioContext();
+  } else if (window.webkitAudioContext) {
+    return new window.webkitAudioContext();
+  } else {
+    return 'browser not supported';
+  }
+}
 
 const AudioContext  = {
 
@@ -8,12 +17,13 @@ const AudioContext  = {
   },
 
   getAnalyser() {
-    return analyser;
+    return audioCtx.createAnalyser();
   },
 
   decodeAudioData(audioData) {
     audioCtx.decodeAudioData(audioData).then(function(decodedData) {
       // use the decoded data here
+      return decodedData;
     });
   }
 

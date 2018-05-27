@@ -43,8 +43,10 @@ class Recorderator extends Component {
       }, 3000);
     }
   
-    onStop= (blobObject) => {
-      console.log('stopped');  
+    onStop = (blobObject) => {
+      console.log('stopped');
+      console.log('behold, the blob object:');
+      console.log(blobObject);
       this.setState({
         blobURL : blobObject.blobURL
       });
