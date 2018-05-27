@@ -29,6 +29,7 @@ export class MicrophoneRecorder {
     startTime = Date.now();
 
     if(mediaRecorder) {
+      console.log('media recorder exists');
 
       if(audioCtx && audioCtx.state === 'suspended') {
         audioCtx.resume();

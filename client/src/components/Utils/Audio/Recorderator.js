@@ -5,15 +5,17 @@ import Record from './Record';
 import Recording from './Recording';
 
 class Recorderator extends Component {
+
     constructor(props){
       super(props);
       this.state = {
         record: false,
-        blobObject: null,
+        blobURL: null,
         isRecording: false,
         recordingState: null,
       }
     }
+
     componentDidMount() {
         this.setState({recordingState:"ready"})
     }
@@ -37,10 +39,16 @@ class Recorderator extends Component {
     }
   
     onStop= (blobObject) => {
+      console.log('stopped');  
       this.setState({
         blobURL : blobObject.blobURL
       });
     }
+
+    setRecordingState = (which) => {
+        this.setState({recordingState:which});
+    }
+
     handleRecordingState = () => {
         let rtnVar;
         switch(this.state.recordingState){
@@ -51,12 +59,13 @@ class Recorderator extends Component {
             break;
         case "recording":
             rtnVar =<Recording
+                            startRecording={this.startRecording}
+                            stopRecording={this.stopRecording}
                             audioBitsPerSecond= {128000}
                             handleRecording={this.setRecordingState}
                             onStart={this.onStart}
                             onStop={this.onStop}
-                            startRecording={this.startRecording}
-                            stopRecording={this.stopRecording}
+                            record={this.state.record}
                         />;
             break;
         case "recorded":
@@ -73,9 +82,6 @@ class Recorderator extends Component {
             rtnVar = <h2>Unknown recordingState</h2>;
         }
         return rtnVar;
-    }
-    setRecordingState = (which) => {
-        this.setState({recordingState:which});
     }
     render(){
         return <div> {this.handleRecordingState()} </div>;

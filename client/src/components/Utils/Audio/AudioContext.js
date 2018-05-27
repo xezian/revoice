@@ -11,11 +11,11 @@ const AudioContext  = {
     return analyser;
   },
 
-  // decodeAudioData() {
-  //   audioCtx.decodeAudioData(audioData).then(function(decodedData) {
-  //     // use the decoded data here
-  //   });
-  // }
+  decodeAudioData(audioData) {
+    audioCtx.decodeAudioData(audioData).then(function(decodedData) {
+      // use the decoded data here
+    });
+  }
 
 }
 
