@@ -21,7 +21,8 @@ class App extends Component {
           </span>
         </p>
         <h1 className="record-label">record / stop / play </h1>
-          <Recorderator />
+          <Recorderator
+            audioBitsPerSecond= {128000}/>
           <Footy />
       </div>
     );
