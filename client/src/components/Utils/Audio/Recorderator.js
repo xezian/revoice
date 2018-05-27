@@ -37,7 +37,7 @@ class Recorderator extends Component {
     onStart=() => {
       console.log('You can tap into the onStart callback');
       setTimeout(() => {
-        console.log('stop time')
+        console.log('stop time baby')
         this.stopRecording();
         this.setRecordingState("recorded");
       }, 3000);
@@ -73,6 +73,7 @@ class Recorderator extends Component {
             break;
         case "recorded":
             rtnVar = <Play
+                    blobURL={this.state.blobURL}
                     handlePlay={this.setRecordingState}
                     />;
             break;
