@@ -3,9 +3,6 @@ import play from '../buttons/play.svg';
 
 
 export default class Play extends Component {
-    constructor(props){
-        super(props);
-    }
     handlePlayClick = () => {
         const audio = new Audio(this.props.blobURL);
         audio.play();
@@ -17,7 +14,11 @@ export default class Play extends Component {
             console.log(`blobURL: ${this.props.blobURL}`)
         }
         return (
-            <img onClick={this.handlePlayClick} src={play} alt='play' />
+            <div>
+                <img onClick={this.handlePlayClick} src={play} alt='play' />
+                <br/>
+                PLAY ^ BUTTON
+            </div>
         );
     };
 };

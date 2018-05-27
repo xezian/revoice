@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import recblink from '../buttons/rec-blink.svg';
 import { MicrophoneRecorder } from './MicrophoneRecorder';
-import AudioContext from './AudioContext';
 import AudioPlayer from './AudioPlayer';
 
 export default class Recording extends Component {
@@ -19,11 +18,9 @@ export default class Recording extends Component {
     };
     if (audioElem) {
       console.log('audio elem exist');
-      const analyser = AudioContext.getAnalyser();
       AudioPlayer.create(audioElem);
     } else {
       console.log('no audio elem');
-      const analyser = AudioContext.getAnalyser();
       this.setState({
         microphoneRecorder  : new MicrophoneRecorder(onStart, onStop, options),
       });
@@ -31,20 +28,24 @@ export default class Recording extends Component {
   }
   render() {
     const { record, onStop, onStart } = this.props;
-    const { microphoneRecorder, analyzer } = this.state;
+    const { microphoneRecorder } = this.state;
 
     if(record) {
       if(microphoneRecorder) {
         console.log('recording.js start');
         microphoneRecorder.startRecording(onStart);
       }
-      return <div>you know it</div>;
+      return <div>
+              <img src={recblink} alt='recording' />
+              <br/>
+              LIVE
+            </div>;
     } else {
       if (microphoneRecorder) {
         console.log('recording.js stop');
         microphoneRecorder.stopRecording(onStop);
       }
-      return <div>hey you</div>;
+       return <div>stop time baby!</div>;
     }
   };
 };

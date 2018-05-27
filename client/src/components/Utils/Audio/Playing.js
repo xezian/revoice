@@ -5,7 +5,11 @@ import playblink from '../buttons/play-blink.svg';
 export default class Playing extends Component {
     render() {
         return (
-            <img onClick={() => this.props.handlePlaying("ready")} src={playblink} alt='playing' />
+            <div>
+                <img onClick={() => this.props.handlePlaying("ready")} src={playblink} alt='playing' />
+                <br/>
+                START AGAIN
+            </div>
         );
     };
 };

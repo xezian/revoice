@@ -5,7 +5,11 @@ import record from '../buttons/record.svg'
 export default class Record extends Component {
     render() {
         return (
-            <img onClick={() => this.props.handleRecord("recording")} src={record} alt='record' />
+            <div>
+                <img onClick={() => this.props.handleRecord("recording")} src={record} alt='record' />
+                <br/>
+                CLICK TO RECORD (3 secs)    
+            </div>
         );
     };
 };
