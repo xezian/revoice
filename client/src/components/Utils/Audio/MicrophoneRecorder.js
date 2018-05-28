@@ -68,7 +68,7 @@ export class MicrophoneRecorder {
 
           audioCtx = AudioContext.getAudioContext();
           analyser = AudioContext.getAnalyser();
-
+        
           audioCtx.resume();
           mediaRecorder.start(10);
 
@@ -93,8 +93,7 @@ export class MicrophoneRecorder {
   onStop(evt) {
     const blob = new Blob(chunks, { 'type' : mediaOptions.mimeType });
     chunks = [];
-
-    const blobObject =  {
+    const blobObject = {
       blob      : blob,
       startTime : startTime,
       stopTime  : Date.now(),

@@ -3,6 +3,7 @@ import Play from './Play';
 import Playing from './Playing';
 import Record from './Record';
 import Recording from './Recording';
+import ReverseThisBlob from './ReverseThisBlob';
 
 class Recorderator extends Component {
 
@@ -47,8 +48,11 @@ class Recorderator extends Component {
       console.log('stopped');
       console.log('behold, the blob object:');
       console.log(blobObject);
-      this.setState({
-        blobURL : blobObject.blobURL
+      ReverseThisBlob(blobObject).then((blobObj)=>{
+        console.log(blobObj);
+        this.setState({
+          blobURL : blobObj.blobURL
+        })
       });
     }
 

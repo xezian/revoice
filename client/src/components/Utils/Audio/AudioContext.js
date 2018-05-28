@@ -21,12 +21,15 @@ const AudioContext  = {
   },
 
   decodeAudioData(audioData) {
-    audioCtx.decodeAudioData(audioData).then(function(decodedData) {
-      // use the decoded data here
-      return decodedData;
-    });
+    return new Promise((res, rej) => {
+      audioCtx.decodeAudioData(audioData).then(function(decodedData) {
+        // use the decoded data here
+        res(decodedData);
+      }).catch(err=>{
+        rej(err);
+      });
+    })
   }
-
 }
 
 export default AudioContext;

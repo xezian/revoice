@@ -6,7 +6,7 @@ export default class Play extends Component {
     handlePlayClick = () => {
         const audio = new Audio(this.props.blobURL);
         audio.play();
-        this.props.handlePlay("playing")
+        this.props.handlePlay("playing");
     }
     render() {
         if(this.props.blobURL){
