@@ -1,7 +1,6 @@
 import React, { Component }  from 'react';
 import recblink from '../buttons/rec-blink.svg';
 import { MicrophoneRecorder } from './MicrophoneRecorder';
-import AudioPlayer from './AudioPlayer';
 
 export default class Recording extends Component {
   constructor(props) {
@@ -12,19 +11,14 @@ export default class Recording extends Component {
   }
   componentDidMount(){
     this.props.startRecording();
-    const { onStart, onStop, audioElem, audioBitsPerSecond } = this.props;
+    const { onStart, onStop, audioBitsPerSecond } = this.props;
     const options = {
         audioBitsPerSecond : audioBitsPerSecond,
+        mimeType: 'audio/webm;codecs=opus'
     };
-    if (audioElem) {
-      console.log('audio elem exist');
-      AudioPlayer.create(audioElem);
-    } else {
-      console.log('no audio elem');
-      this.setState({
-        microphoneRecorder  : new MicrophoneRecorder(onStart, onStop, options),
-      });
-    }
+    this.setState({
+      microphoneRecorder  : new MicrophoneRecorder(onStart, onStop, options),
+    });
   }
   render() {
     const { record, onStop, onStart } = this.props;

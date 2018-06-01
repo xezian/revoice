@@ -1,11 +1,9 @@
 import AudioContext from './AudioContext';
 
-let analyser;
 let audioCtx;
 let mediaRecorder;
 let chunks = [];
 let startTime;
-let stream;
 let mediaOptions;
 let onStartCallback;
 let onStopCallback;
@@ -42,8 +40,6 @@ export class MicrophoneRecorder {
 
       if(audioCtx && mediaRecorder && mediaRecorder.state === 'inactive') {
         mediaRecorder.start(10);
-        const source = audioCtx.createMediaStreamSource(stream);
-        source.connect(analyser);
         if(onStartCallback) { onStartCallback() };
       }
     } else {
@@ -51,7 +47,6 @@ export class MicrophoneRecorder {
         console.log('getUserMedia supported.');
 
         navigator.mediaDevices.getUserMedia(constraints).then((str) => {
-          stream = str;
 
           if(MediaRecorder.isTypeSupported(mediaOptions.mimeType)) {
             mediaRecorder = new MediaRecorder(str, mediaOptions);
@@ -67,13 +62,9 @@ export class MicrophoneRecorder {
           }
 
           audioCtx = AudioContext.getAudioContext();
-          analyser = AudioContext.getAnalyser();
         
           audioCtx.resume();
           mediaRecorder.start(10);
-
-          const source = audioCtx.createMediaStreamSource(stream);
-          source.connect(analyser);
 
         });
       } else {

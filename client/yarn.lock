@@ -5912,6 +5912,10 @@ ret@~0.1.10:
   version "0.1.15"
   resolved "https://registry.yarnpkg.com/ret/-/ret-0.1.15.tgz#b8a4825d5bdb1fc3f6f53c2bc33f81388681c7bc"
 
+reversebuffer@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/reversebuffer/-/reversebuffer-3.0.1.tgz#bc921f085457fdd317def2c3518b6f1031e840e4"
+
 right-align@^0.1.1:
   version "0.1.3"
   resolved "https://registry.yarnpkg.com/right-align/-/right-align-0.1.3.tgz#61339b722fe6a3515689210d24e14c96148613ef"

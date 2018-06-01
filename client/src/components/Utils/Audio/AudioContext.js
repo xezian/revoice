@@ -16,10 +16,6 @@ const AudioContext  = {
     return audioCtx;
   },
 
-  getAnalyser() {
-    return audioCtx.createAnalyser();
-  },
-
   decodeAudioData(audioData) {
     return new Promise((res, rej) => {
       audioCtx.decodeAudioData(audioData).then(function(decodedData) {

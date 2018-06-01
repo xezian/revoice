@@ -1,11 +1,13 @@
 import AudioContext from './AudioContext';
+import reverseBuffer from 'reversebuffer';
 
 let arrayBuffer;
 const fileReader = new FileReader();
+const audioCtx = AudioContext.getAudioContext();
 
 fileReader.onloadend = () => {
     arrayBuffer = fileReader.result;
-}
+};
 
 const readMyFile = (blob) => {
     return new Promise((res, rej)=>{
@@ -18,19 +20,52 @@ const readMyFile = (blob) => {
             }
         }, 5000)
     })
-}
+};
 
-const ReverseThisBlob = (blobObj) => {
+const sendToDecoder = (blob) => {
     return new Promise((res,rej) => { 
-        readMyFile(blobObj.blob).then(aBuff=>{
+        readMyFile(blob).then(aBuff=>{
             AudioContext.decodeAudioData(aBuff).then(decoded=>{
-                console.log(decoded)
-                res(blobObj);
+                res(decoded);
             }).catch(err=>{
                 rej(err);
             });
         });    
     })
-}
+};
 
-export default ReverseThisBlob;
+const reverseThisBlob = (blob) => {
+    return new Promise((res,rej) => { 
+        sendToDecoder(blob).then((decoded) => {
+            console.log('forwards buffer: ')
+            console.log(decoded);
+            let revBuff = reverseBuffer({
+                buffer: decoded,
+                context: audioCtx,
+            });
+            revBuff = reverseBuffer(decoded);
+            setTimeout(()=>{
+                if(revBuff){
+                    res(revBuff);
+                }else{
+                    rej("not readable");
+                }
+            }, 2000);
+        }).catch(err=>{
+            rej(err);
+        });  
+    });
+};
+
+const ReverseTheBlobInThisObject = (blobObj) => {
+    return new Promise((res, rej) => {
+        reverseThisBlob(blobObj.blob).then(revBuff => {
+            res(revBuff);
+        }).catch(err=>{
+            rej(err);
+        })
+    })
+};
+
+export default ReverseTheBlobInThisObject;
+

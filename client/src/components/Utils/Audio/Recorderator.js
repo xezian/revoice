@@ -3,7 +3,7 @@ import Play from './Play';
 import Playing from './Playing';
 import Record from './Record';
 import Recording from './Recording';
-import ReverseThisBlob from './ReverseThisBlob';
+import ReverseTheBlobInThisObject from './ReverseThisBlob';
 
 class Recorderator extends Component {
 
@@ -11,7 +11,7 @@ class Recorderator extends Component {
       super(props);
       this.state = {
         record: false,
-        blobURL: null,
+        revBuff: null,
         isRecording: false,
         recordingState: null,
       }
@@ -24,7 +24,8 @@ class Recorderator extends Component {
     startRecording= () => {
       this.setState({
         record: true,
-        isRecording: true
+        isRecording: true,
+        revBuff: null
       });
     }
   
@@ -48,10 +49,11 @@ class Recorderator extends Component {
       console.log('stopped');
       console.log('behold, the blob object:');
       console.log(blobObject);
-      ReverseThisBlob(blobObject).then((blobObj)=>{
-        console.log(blobObj);
+      ReverseTheBlobInThisObject(blobObject).then((revBuff)=>{
+        console.log('behold, the reversed audio buffer:');
+        console.log(revBuff);
         this.setState({
-          blobURL : blobObj.blobURL
+          revBuff : revBuff
         })
       });
     }
@@ -65,28 +67,29 @@ class Recorderator extends Component {
         switch(this.state.recordingState){
         case "ready":
             rtnVar = <Record
-                        handleRecord={this.setRecordingState}
-                    />;
+                      handleRecord={this.setRecordingState}
+                      />;
             break;
         case "recording":
-            rtnVar =<Recording
-                            startRecording={this.startRecording}
-                            audioBitsPerSecond= {128000}
-                            onStart={this.onStart}
-                            onStop={this.onStop}
-                            record={this.state.record}
-                        />;
+            rtnVar = <Recording
+                        startRecording={this.startRecording}
+                        audioBitsPerSecond= {128000}
+                        onStart={this.onStart}
+                        onStop={this.onStop}
+                        record={this.state.record}
+                      />;
             break;
         case "recorded":
             rtnVar = <Play
-                    blobURL={this.state.blobURL}
-                    handlePlay={this.setRecordingState}
-                    />;
+                      revBuff={this.state.revBuff}
+                      handlePlay={this.setRecordingState}
+                      />;
             break;
         case "playing":
             rtnVar = <Playing
-                    handlePlaying={this.setRecordingState} 
-                    />;
+                      revBuff={this.state.revBuff}
+                      handlePlaying={this.setRecordingState}
+                      />;
             break;
         default:
             rtnVar = <h2>Unknown recordingState</h2>;
