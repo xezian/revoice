@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(require('./routes'));
 // Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/eciov");
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/revoice");
 
 // for production only! then the client/build directory has it all.
 if( process.env.NODE_ENV === 'production' ){
@@ -33,3 +33,5 @@ if( process.env.NODE_ENV === 'production' ){
 app.listen(PORT, function() {
   console.log(`🌎 ==> Server now on port ${PORT}!`);
 });
+
+module.exports = app;

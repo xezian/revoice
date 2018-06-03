@@ -11,11 +11,14 @@
     "dev": "concurrently \"cd client && yarn start\" \"yarn start\"",
     "start": "node server",
     "lint": "eslint .",
-    "test": "cd server; mocha --timeout 10000 --exit",
+    "test": "yarn test:server; yarn test:client",
+    "test:client": "cd client; yarn test;",
+    "test:server": "mocha --timeout 10000 --exit",
     "heroku-postbuild": "cd client && yarn run build"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai-http": "^4.0.0",
     "express": "^4.16.3",
     "mongoose": "^5.1.0",
     "web-audio-api": "^0.2.2"

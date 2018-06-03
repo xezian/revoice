@@ -5,14 +5,14 @@ const db = require('../models');
 module.exports = {
   retrieveOne: (req, res) => {
     db.Clip
-      .find(req.query)
+      .findById(req.params.id)
       .sort({ date: -1 })
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
   retrieveAll: (req, res) => {
     db.Clip
-      .findById(req.body.id)
+      .find({})
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
