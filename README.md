@@ -9,6 +9,6 @@ This repository contains all my code for the full stack version of the app which
 
 There is another repo with just the front end of this app which can be found [here](https://github.com/xezian/react-revoice)
 
-And also a deployed version of that repo which can be found (here)[https://react-revoice.herokuapp.com/]
+And also a deployed version of that repo which can be found [here](https://react-revoice.herokuapp.com/)
 
 © Copyright 2018 Jason A. Leo
