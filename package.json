@@ -1,9 +1,9 @@
 {
-  "name": "eciov",
+  "name": "revoice",
   "version": "1.0.0",
   "description": "A game that involves reversing vocal audio clips",
   "main": "index.js",
-  "repository": "git@github.com:xezian/eciov.git",
+  "repository": "git@github.com:xezian/revoice.git",
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
   "scripts": {
