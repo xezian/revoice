@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default {
-    primaryClip: (clipUrl) => {
+    storeClip: (clipUrl) => {
         axios.post('/api/clips', {clipUrl});
     },
     attempt: (id, clipUrl) => {
@@ -13,7 +13,7 @@ export default {
     getAll: () => {
         axios.get('/api/clips');
     },
-    delete: () => {
+    delete: (id) => {
         axios.delete(`/api/clips/${id}`)
     }
 }
