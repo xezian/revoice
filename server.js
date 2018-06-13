@@ -3,7 +3,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const util = require("util");
-const mongoose = require('mongoose');
+const ko = require('nekodb');
 
 // either - or
 const PORT = process.env.PORT || 3030;
@@ -14,8 +14,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(require('./routes'));
-// Connect to the Mongo DB
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost:27017/revoice");
 
 // for production only! then the client/build directory has it all.
 if( process.env.NODE_ENV === 'production' ){

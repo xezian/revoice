@@ -1,12 +1,11 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const ko = require('nekodb');
 
-const clipSchema = new Schema({
-    originalClip: { type: String, required: true},
-    topAttempt: { type: String, required: false},
-    secondPlace: { type: String, required: false},
-    thirdPlace: { type: String, required: false},
-    lastPlace: { type: String, required: false},
+const Clip = ko.Model('Clip',{
+    originalClip: ko.String,
+    date: ko.Date.now(),
+    topTry: ko.String.default('top try placeholder'),
+    secondBest: ko.String.default('second best'),
+    firstWorst: ko.String.default('first worst'),
 });
-const Clip = mongoose.model("Clip", clipSchema);
+
 module.exports = Clip;
