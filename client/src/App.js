@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
-import { Recorderator } from './components/Utils/Audio/';
-import logo from './components/Utils/buttons/logo.svg'
+import logo from './components/Utils/buttons/logo.svg';
+import Switchboard from './components/Switchboard/Switchboard';
 import Footy from './components/Footy/Footy';
 import './App.css';
 
 class App extends Component {
+  state = {
+    emojiState: '❤'
+  }
+  switchEmoji = (emoji) => {
+    this.setState({emojiState:emoji});
+  }
   render() {
     return (
       <div className="App">
@@ -17,11 +23,12 @@ class App extends Component {
         </p>
         <p>
           <span className="directions">
-          to get started, click record and say something
+          to get started, click record anew or browse
           </span>
         </p>
-        <h1 className="record-label">record / stop / play </h1>
-          <Recorderator
+        <h1 className="record-label">{this.state.emojiState}</h1>
+          <Switchboard
+            emojiState={(emoji)=>this.switchEmoji(emoji)}
             audioBitsPerSecond= {128000}/>
           <Footy />
       </div>

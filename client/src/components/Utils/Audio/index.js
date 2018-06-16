@@ -1,3 +1,7 @@
-import Recorderator from './Recorderator.js';
+import Recorderator from './Create/Recorderator';
+import Clip from './Attempt/Clip';
 
-export { Recorderator }
+export { 
+            Recorderator,
+            Clip,  
+        }

@@ -9,12 +9,8 @@ export default {
     attempt: (id, clipUrl) => {
         axios.post(`/api/clips/${id}`, {clipUrl});
     },
-    getOne: (id) => {
-        axios.get(`/api/clips/${id}`);
-    },
-    getAll: () => {
-        axios.get('/api/clips');
-    },
+    getOne: id => axios.get(`/api/clips/${id}`),
+    getSome: (options) => axios.get('/api/clips', {options}),
     delete: (id) => {
         axios.delete(`/api/clips/${id}`)
     }

@@ -12,19 +12,21 @@ module.exports = {
   retrieveAll: (req, res) => {
     db.Clip
       .find({})
+      .sort(req.body.sort || {date: -1})
+      .limit(req.body.limit || 10)
       .join()
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
   create: (url) => {
     console.log(url);
-    return new Promise((resolve, reject) => {
+    return new Promise((res, rej) => {
       db.Clip
         .create({originalClip: url}).save()
         .then(instance => {
-          resolve(instance)
+          res(instance)
         })
-        .catch(err => reject(err))
+        .catch(err => rej(err))
     })
   },
   attempt: (req, res) => {
