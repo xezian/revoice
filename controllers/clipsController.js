@@ -1,6 +1,5 @@
 // require models
 const db = require('../models');
-const storeThisObj = require('./storeThisObj');
 
 // export functions to handle db interaction for Clips
 module.exports = {
@@ -17,13 +16,15 @@ module.exports = {
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
-  create: (req, res) => {
-    storeThisObj(req.body.clipUrl).then(newUrl => {
-      console.log(newUrl);
+  create: (url) => {
+    console.log(url);
+    return new Promise((resolve, reject) => {
       db.Clip
-        .create({originalClip:newUrl}).save()
-        .then(instance => res.json(instance))
-        .catch(err => res.status(422).json(err));
+        .create({originalClip: url}).save()
+        .then(instance => {
+          resolve(instance)
+        })
+        .catch(err => reject(err))
     })
   },
   attempt: (req, res) => {

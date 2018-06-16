@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 export default {
-    storeClip: (clipUrl) => {
-        axios.post('/api/clips', {clipUrl});
-    },
+    storeClip: form => axios.post('/api/upload', form, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }),
     attempt: (id, clipUrl) => {
         axios.post(`/api/clips/${id}`, {clipUrl});
     },

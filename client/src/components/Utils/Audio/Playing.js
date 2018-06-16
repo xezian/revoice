@@ -27,9 +27,16 @@ export default class Playing extends Component {
         const wav = toWav(this.props.revBuff);
         const blob = new window.Blob([ new DataView(wav) ], {
           type: 'audio/wav'
-        })
-        const url = window.URL.createObjectURL(blob);
-        API.storeClip(url);
+        });
+        const form = new FormData();
+        form.append('originalclip', blob);
+        API.storeClip(form)
+            .then(res => {
+            console.log(res);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
     render() {
         return (

@@ -1,4 +1,5 @@
 // declare initial dependancies
+const dotenv = require('dotenv');
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
@@ -9,6 +10,9 @@ const ko = require('nekodb');
 const PORT = process.env.PORT || 3030;
 
 const app = express();
+
+// config it
+dotenv.config();
 
 // bodyParser is my fav band
 app.use(bodyParser.urlencoded({ extended: true }));
