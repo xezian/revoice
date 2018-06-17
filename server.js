@@ -1,10 +1,7 @@
 // declare initial dependancies
 const dotenv = require('dotenv');
 const express = require("express");
-const path = require("path");
 const bodyParser = require("body-parser");
-const util = require("util");
-const ko = require('nekodb');
 
 // either - or
 const PORT = process.env.PORT || 3030;
@@ -31,9 +28,20 @@ if( process.env.NODE_ENV === 'production' ){
   });
 };
 
-// connect to the server
-app.listen(PORT, function() {
-  console.log(`🌎 ==> Server now on port ${PORT}!`);
-});
+if(!module.parent) {
+  // connect to the server
+  console.log('🌎');
+  console.log('🌎>');
+  console.log('🌎=>');
+  console.log('🌎==>');
+  console.log('🌎*==>');
+  console.log('🌎~*==>');
+  console.log('🌎 ~*==>');
+  console.log('🌎  ~*==>');
+  app.listen(PORT, function() {
+    console.log(`🌎   ~*==> Server now on port ${PORT}!`);
+  });
+}
+
 
 module.exports = app;

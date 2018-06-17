@@ -9,7 +9,7 @@ module.exports = {
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
-  retrieveAll: (req, res) => {
+  retrieveSome: (req, res) => {
     db.Clip
       .find({})
       .sort(req.body.sort || {date: -1})

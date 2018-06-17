@@ -4,8 +4,10 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const server = require('../server.js');
 const db = require('../models');
-const should = chai.should();
+
 chai.use(chaiHttp);
+chai.should();
+
 describe('test', () => {
     it('should run this test first', (done) => {
         done();
@@ -29,15 +31,17 @@ describe('server good', () => {
 })
 describe('post, find, delete a clip', () => {
     let id;
-    beforeEach((done) => {db.Clip
-        .create({ originalClip: 'not a real url' })
-        .then(instance => {
-            id = instance._id;
-            done();
-        })
-        .catch(err => {
-            console.log(err);
-        });
+    beforeEach((done) => {
+        db.Clip
+            .create({ originalClip: 'not a real url' })
+            .save()
+            .then(instance => {
+                id = instance._id;
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+            });
     })
     it('should find the clip model i just made by id in the clips collection', (done) => {
         chai.request(server)
@@ -46,15 +50,18 @@ describe('post, find, delete a clip', () => {
                 res.should.have.status(200);
                 res.body.should.be.an('object');
                 res.body.originalClip.should.equal('not a real url');
-                done()
+                if(err) {
+                    console.log(err);
+                } else {
+                    done();
+                }
             })
     })
     afterEach((done) => {
         db.Clip
-            .findById({ _id: id })
-            .then(dbModel => dbModel.remove())
-            .then(() => {
-                console.log('delete successful');
+            .deleteById(id)
+            .then((count) => {
+                console.log(`${count} records deleted`);
                 done();
             })
             .catch(err => {
