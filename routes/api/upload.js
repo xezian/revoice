@@ -26,9 +26,28 @@ const upload = multer({
 });
 
 router.post('/', upload.any(), (req, res) => {
-  console.log(req.files[0].location);
+  console.log(req.files[0]);
   const url = req.files[0].location;
-  clipsController.create(url).then((inst) =>{
+  const etag = req.files[0].etag;
+  clipsController.create(url, etag).then((inst) =>{
+    res.json(inst);
+  }).catch((err) => {
+    res.status(422).json(err);
+  })
+});
+
+router.post('/:id', upload.any(), (req, res) => {
+  const score = parseInt(req.body.score);
+  const url = req.files[0].location;
+  const etag = req.files[0].etag;
+  const successObj = {
+    attempt: url,
+    score: score,
+    awsEtag: etag,
+    clip: req.params.id
+  }
+  console.log(successObj);
+  clipsController.attempt(successObj).then((inst) => {
     res.json(inst);
   }).catch((err) => {
     res.status(422).json(err);

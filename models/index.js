@@ -9,4 +9,5 @@ ko.connect({
 
 module.exports = {
   Clip: require('./Clip'),
+  Attempt: require('./Attempt'),
 };

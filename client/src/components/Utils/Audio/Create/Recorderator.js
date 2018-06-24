@@ -91,6 +91,9 @@ class Recorderator extends Component {
                       revBuff={this.state.revBuff}
                       handlePlaying={this.setRecordingState}
                       handleSave={(id) => this.props.handleSave(id)}
+                      haveClip={this.props.haveClip}
+                      id={this.props.id}
+                      url={this.props.url}
                       />;
             break;
         default:

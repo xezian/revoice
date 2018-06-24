@@ -1,9 +1,22 @@
 .butter {
-    background-color: #f7e0cb
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
 }
 .fork {
-    float: left
+    background-color: #f7e0cb;
+    text-align: left;
+}
+.plate {
+    text-align: center;
+}
+.food {
+    background-color: #da5ada;
+    border: 1px solid black;
 }
 .knife {
-    float: right
+    background-color: #f7e0cb;
+    text-align: right;
 }

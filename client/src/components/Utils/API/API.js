@@ -6,11 +6,14 @@ export default {
             'content-type': 'multipart/form-data'
         }
     }),
-    attempt: (id, clipUrl) => {
-        axios.post(`/api/clips/${id}`, {clipUrl});
-    },
+    succeed: (form, id) => axios.post(`/api/upload/${id}`, form, {
+        headers: {
+            'content-type': 'multipart/form-data'
+        }
+    }),
     getOne: id => axios.get(`/api/clips/${id}`),
     getSome: (options) => axios.get('/api/clips', {options}),
+    getThree: id => axios.get(`/api/attempts/${id}`),
     delete: (id) => {
         axios.delete(`/api/clips/${id}`)
     }

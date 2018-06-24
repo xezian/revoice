@@ -29,7 +29,7 @@ class App extends Component {
         <h1 className="record-label">{this.state.emojiState}</h1>
           <Switchboard
             emojiState={(emoji)=>this.switchEmoji(emoji)}
-            audioBitsPerSecond= {320000}/>
+            audioBitsPerSecond= {128000}/>
           <Footy />
       </div>
     );

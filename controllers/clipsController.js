@@ -18,25 +18,38 @@ module.exports = {
       .then(instances => res.json(instances))
       .catch(err => res.status(422).json(err));
   },
-  create: (url) => {
+  retrieveThree: (req, res) => {
+    db.Attempt
+      .find({clip:`${req.params.id}`})
+      .limit(3)
+      .join()
+      .then(instances => res.json(instances))
+      .catch(err => res.status(422).json(err));
+  },
+  create: (url, etag) => {
     console.log(url);
     return new Promise((res, rej) => {
       db.Clip
-        .create({originalClip: url}).save()
+        .create({
+          originalClip: url,
+          awsEtag: etag,
+        }).save()
         .then(instance => {
           res(instance)
         })
         .catch(err => rej(err))
     })
   },
-  attempt: (req, res) => {
-    db.Clip
-      .findById(req.params.id)
-      .then((instance) => { 
-        const newInst = Object.assign(instance, req.body);
-        return newInst.save();
-      })
-      .catch(err => res.status(422).json(err));
+  attempt: (successObj) => {
+    return new Promise((res, rej) => {
+      db.Attempt
+        .create(successObj).save()
+        .then((instance) => {
+          console.log('youoyouhouho!')
+          res(instance);
+        })
+        .catch(err => rej(err));
+    })
   },
   remove: (req, res) => {
     db.Clip

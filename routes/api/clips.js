@@ -5,7 +5,6 @@ const clipsController = require('../../controllers/clipsController');
 router
   .get('/', clipsController.retrieveSome)
   .get('/:id', clipsController.retrieveOne)
-  .post('/:id', clipsController.attempt)
   .delete('/:id', clipsController.remove);
 
 module.exports = router;
