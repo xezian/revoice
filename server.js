@@ -38,8 +38,14 @@ if(!module.parent) {
   console.log('🌎~*==>');
   console.log('🌎 ~*==>');
   console.log('🌎  ~*==>');
+  console.log('🌎   ~*==>');
+  console.log('🌎    ~*==>');
+  console.log('🌎      ~*==>');
+  console.log('🌎        ~*==>');
+  console.log('🌎           ~*==>');
+  console.log('🌎               ~*==>');
   app.listen(PORT, function() {
-    console.log(`🌎   ~*==> Server now on port ${PORT}!`);
+    console.log(`🌎                   ~*==> Server now on port ${PORT}!`);
   });
 }
 

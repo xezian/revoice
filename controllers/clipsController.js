@@ -21,6 +21,7 @@ module.exports = {
   retrieveThree: (req, res) => {
     db.Attempt
       .find({clip:`${req.params.id}`})
+      .sort({score: 1})
       .limit(3)
       .join()
       .then(instances => res.json(instances))
@@ -45,7 +46,6 @@ module.exports = {
       db.Attempt
         .create(successObj).save()
         .then((instance) => {
-          console.log('youoyouhouho!')
           res(instance);
         })
         .catch(err => rej(err));

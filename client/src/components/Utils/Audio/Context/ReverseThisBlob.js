@@ -37,8 +37,6 @@ const sendToDecoder = (blob) => {
 const reverseThisBlob = (blob) => {
     return new Promise((res,rej) => { 
         sendToDecoder(blob).then((decoded) => {
-            console.log('forwards buffer: ')
-            console.log(decoded);
             let revBuff = reverseBuffer({
                 buffer: decoded,
                 context: audioCtx,

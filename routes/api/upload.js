@@ -26,7 +26,6 @@ const upload = multer({
 });
 
 router.post('/', upload.any(), (req, res) => {
-  console.log(req.files[0]);
   const url = req.files[0].location;
   const etag = req.files[0].etag;
   clipsController.create(url, etag).then((inst) =>{
@@ -46,7 +45,6 @@ router.post('/:id', upload.any(), (req, res) => {
     awsEtag: etag,
     clip: req.params.id
   }
-  console.log(successObj);
   clipsController.attempt(successObj).then((inst) => {
     res.json(inst);
   }).catch((err) => {
