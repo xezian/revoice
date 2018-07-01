@@ -1,24 +1,18 @@
 import AudioContext from './AudioContext';
 import reverseBuffer from 'reversebuffer';
 
-let arrayBuffer;
-const fileReader = new FileReader();
 const audioCtx = AudioContext.getAudioContext();
-
-fileReader.onloadend = () => {
-    arrayBuffer = fileReader.result;
-};
 
 const readMyFile = (blob) => {
     return new Promise((res, rej)=>{
+        const fileReader = new FileReader();
+        fileReader.onloadend = () => {
+            res(fileReader.result);
+        };
+        fileReader.onerror = (err) => {
+            rej(err);
+        };
         fileReader.readAsArrayBuffer(blob);
-        setTimeout(()=>{
-            if(arrayBuffer){
-                res(arrayBuffer);
-            }else{
-                rej("not readable");
-            }
-        }, 5000)
     })
 };
 
@@ -37,18 +31,11 @@ const sendToDecoder = (blob) => {
 const reverseThisBlob = (blob) => {
     return new Promise((res,rej) => { 
         sendToDecoder(blob).then((decoded) => {
-            let revBuff = reverseBuffer({
+            reverseBuffer({
                 buffer: decoded,
                 context: audioCtx,
             });
-            revBuff = reverseBuffer(decoded);
-            setTimeout(()=>{
-                if(revBuff){
-                    res(revBuff);
-                }else{
-                    rej("not readable");
-                }
-            }, 2000);
+            res(reverseBuffer(decoded));
         }).catch(err=>{
             rej(err);
         });  

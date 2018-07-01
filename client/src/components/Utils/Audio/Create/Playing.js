@@ -41,6 +41,7 @@ export default class Playing extends Component {
     }
     attempt = (sorce) => { 
         CompareTheseBuffers(sorce, this.props.url, this.props.id).then(res => {
+            console.log(res);
             if(res.success){
                 const wav = toWav(sorce);
                 const blob = new window.Blob([ new DataView(wav) ], {
@@ -50,14 +51,14 @@ export default class Playing extends Component {
                 form.append('attempt', blob);
                 form.append('score', res.score)
                 API.succeed(form, this.props.id)
-                    .then(res => {
-                        this.props.handleSave(res.data._id);
+                    .then((res) => {
+                        this.props.handleSave(this.props.id);
                     })
                     .catch(err => {
                         console.log(err);
                     });
             } else {
-                return <div> not a good enough try I'm afraid </div>; 
+                this.props.handleFail(res); 
             }
         }).catch(err => console.log(err))
     }

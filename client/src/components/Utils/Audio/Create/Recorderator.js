@@ -6,15 +6,13 @@ import Recording from './Recording';
 import ReverseTheBlobInThisObject from '../Context/ReverseThisBlob';
 
 class Recorderator extends Component {
-
-    constructor(props){
-      super(props);
-      this.state = {
+   
+    state = {
         record: false,
         revBuff: null,
+        msg: null,
         isRecording: false,
         recordingState: null,
-      }
     }
 
     componentDidMount() {
@@ -38,25 +36,26 @@ class Recorderator extends Component {
     }
   
     onStart=() => {
-      console.log('You can tap into the onStart callback');
+      // 3 second recording time
       setTimeout(() => {
-        console.log('stop time baby')
         this.stopRecording();
         this.setRecordingState("recorded");
       }, 3000);
     }
   
     onStop = (blobObject) => {
-      console.log('stopped');
-      console.log('behold, the blob object:');
-      console.log(blobObject);
       ReverseTheBlobInThisObject(blobObject).then((revBuff)=>{
-        console.log('behold, the reversed audio buffer:');
-        console.log(revBuff);
         this.setState({
           revBuff : revBuff
         })
       });
+    }
+
+    handleFail = (msg) => {
+      this.setState({
+        recordingState: "nice try",
+        msg: msg
+      })
     }
 
     setRecordingState = (which) => {
@@ -91,10 +90,19 @@ class Recorderator extends Component {
                       revBuff={this.state.revBuff}
                       handlePlaying={this.setRecordingState}
                       handleSave={(id) => this.props.handleSave(id)}
+                      handleFail={(msg) => this.handleFail(msg)}
                       haveClip={this.props.haveClip}
                       id={this.props.id}
                       url={this.props.url}
                       />;
+            break;
+        case "nice try":
+            rtnVar = (
+              <div>
+                <button onClick={() => this.setRecordingState("ready")}>CLICK TO ReTRY</button>
+                <h4>{this.state.msg}</h4>
+              </div>
+            );
             break;
         default:
             rtnVar = <h2>Unknown recordingState</h2>;

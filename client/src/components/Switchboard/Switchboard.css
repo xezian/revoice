@@ -11,8 +11,15 @@
 }
 .plate {
     text-align: center;
+    font-size: 50px;
+}
+.refresh {
+    background: none;
+    border: none;
+    font-size: 30px;
 }
 .food {
+    text-align: center;
     background-color: #da5ada;
     border: 1px solid black;
 }

@@ -3,11 +3,8 @@ import recblink from '../../buttons/rec-blink.svg';
 import { MicrophoneRecorder } from '../Context/MicrophoneRecorder';
 
 export default class Recording extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      microphoneRecorder  : null,
-    }
+  state = {
+    microphoneRecorder  : null,
   }
   componentDidMount(){
     this.props.startRecording();
@@ -26,7 +23,6 @@ export default class Recording extends Component {
 
     if(record) {
       if(microphoneRecorder) {
-        console.log('recording.js start');
         microphoneRecorder.startRecording(onStart);
       }
       return <div>
@@ -36,7 +32,6 @@ export default class Recording extends Component {
             </div>;
     } else {
       if (microphoneRecorder) {
-        console.log('recording.js stop');
         microphoneRecorder.stopRecording(onStop);
       }
        return <div>stop time baby!</div>;

@@ -28,7 +28,6 @@ module.exports = {
       .catch(err => res.status(422).json(err));
   },
   create: (url, etag) => {
-    console.log(url);
     return new Promise((res, rej) => {
       db.Clip
         .create({

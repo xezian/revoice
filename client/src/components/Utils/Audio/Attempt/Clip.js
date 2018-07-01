@@ -15,7 +15,6 @@ export default class Clip extends Component {
         this.props.emojiState('🌀');
     }
     getClip = () => {
-        console.log(this.state);
         let clipObj = [];
         API.getOne(this.state.id).then(obj => {
             clipObj.push(obj.data);
@@ -32,13 +31,11 @@ export default class Clip extends Component {
     getAttempts = () => {
         let attemptObj = [];
         API.getThree(this.state.id).then(obj => {
-            console.log(obj.data)
             attemptObj.push(obj.data);
         }).catch(err => console.log(err));
         this.setState({attemptObj})
         setTimeout(()=>{
             this.setState({haveAttempts: true});
-            console.log(this.state.attemptObj);
         },200);
     }
     attempt = () => {
@@ -48,7 +45,6 @@ export default class Clip extends Component {
         this.props.useOne(id,url);
     }
     play = (clipUrl) => {
-        console.log(clipUrl)
         const audio = new Audio(clipUrl);
         audio.type = 'audio/wav';
         audio.play();

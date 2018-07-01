@@ -10,12 +10,13 @@ const CompareTheseBuffers = (revBuff, url, id) => {
         getBuff(url).then(resBuff => {
             compareBuffs(resBuff, revBuff).then(score => {
                 console.log('dtw score: ' + score);
-                // console.log('dynamic-time-warping score: ' + score);
                 getClip(id).then(clipObj => {
                     compareScores(clipObj, score).then(success => {
                         if(success.success){ 
                             res(success);
-                        } 
+                        } else {
+                            res('sorry, sonny, a score of ' + success.score + ' is just not excellent enough');
+                        }
                     }).catch(err=> rej(err));
                 }).catch(err => rej(err));
             }).catch(err => rej(err));
@@ -26,9 +27,22 @@ const CompareTheseBuffers = (revBuff, url, id) => {
 // check the score against all scores and store if better than top 3
 const compareScores = (clipObj, score) => {
     return new Promise((res) => {
-        console.log('clipobJ!!!!!!!!!!!!!!')
-        console.log(clipObj);
-        res({success: true, score: score});
+        API.getThree(clipObj._id).then(results => {
+            let successObj = {
+                success: false,
+                score: score
+            }
+            if(results.data.length < 3){
+                successObj.success = true;
+            } else {
+                for(let i = 0; i < results.data.length; i++){
+                    if(score < results.data[i].score){
+                        successObj.success = true;
+                    }
+                }
+            }
+            res(successObj);
+        })
     })
 }
 
@@ -36,7 +50,7 @@ const compareScores = (clipObj, score) => {
 const sampleArr = (arr) => {
     return new Promise((res, rej) => {
         const sampled = arr.filter((oneBit, inx) => {
-            return (inx%10 === 0 && !isNaN(oneBit));
+            return (inx%9 === 0 && !isNaN(oneBit));
         });
         Promise.all([...sampled]).then(() => {
             res(sampled);
@@ -51,18 +65,10 @@ function compareBuffs(originalBuff, newTryBuff) {
         const newTry = newTryBuff.getChannelData(0);
         const origArr = Array.prototype.slice.call(orig);
         const newTryArr = Array.prototype.slice.call(newTry);
-        // // function to compare distance gets passed to DTW 'dynamic-time-warping'
-        // const diffCheck = (hey, now) => {
-        //     return Math.abs(hey - now);
-        // }
-        // sampleArr samples to 1/10th of original array
         sampleArr(origArr).then(origVals => {
             sampleArr(newTryArr).then(newTryVals => {
-                // one of 2 dynamic time warping npm packages aliased DTW
-                const dtw = new DTW(); // 'dtw'
-                // const dtw = new DTW(origVals, newTryVals, diffCheck); // 'dynamic-time-warping'
-                res(dtw.compute(origVals, newTryVals)); // 'dtw'
-                // res(dtw.getDistance()); 'dynamic-time-warping'
+                const dtw = new DTW();
+                res(dtw.compute(origVals, newTryVals));
             }).catch(err => rej(err));
         }).catch(err => rej(err));
     })
@@ -78,18 +84,11 @@ const getBuff = (url) => {
             if (xhr.status === 200) {
                 AudioContext.decodeAudioData(xhr.response).then(result => {
                     let audioCtx = AudioContext.getAudioContext();
-                    let revBuff = reverseBuffer({
+                    reverseBuffer({
                         buffer: result,
                         context: audioCtx,
                     });
-                    revBuff = reverseBuffer(result);
-                    setTimeout(()=>{
-                        if(revBuff){
-                            res(revBuff);
-                        }else{
-                            rej("not readable");
-                        }
-                    }, 2000);
+                    res(reverseBuffer(result));
                 }).catch(err => rej(err));
             }
         }, false);

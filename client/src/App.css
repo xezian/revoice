@@ -1,6 +1,7 @@
 body {
   background-color: rgba(81, 224, 243, 0.267);
 }
+button:focus {outline:0;}
 
 .App {
   text-align: center;

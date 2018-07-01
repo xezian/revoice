@@ -10,6 +10,23 @@ export default class Switchboard extends Component {
         url: null,
         options: null,
         choseClip: false,
+        boxOfThoughts: [
+            "subtle puddle bubble babble",
+            "one word clips usually work the best",
+            "everywhere is somewhere",
+            "if you are lucky you will succeed",
+            "play my game for your whole life",
+            "in a way we are in this together",
+            "miracle of not knowing why",
+            "tomorrow the next day and the day after",
+            "rememeber your favorite epiphany",
+            "with the wind in your hair and a headful of dreams",
+            "thank you for paying attention",
+        ],
+        thought: null,
+    }
+    componentDidMount() {
+        this.magicBox();
     }
     chooseOne = (id) => {
         this.setState({
@@ -24,6 +41,11 @@ export default class Switchboard extends Component {
             url: url,
             options: 'attempt',
             choseClip: true
+        })
+    }
+    magicBox = () => {
+        this.setState({
+            thought: this.state.boxOfThoughts[Math.floor(Math.random()*this.state.boxOfThoughts.length)],
         })
     }
     switchView = (view) => {
@@ -72,7 +94,15 @@ export default class Switchboard extends Component {
                         />
             break;
         default:
-            rtnVar = <div>subtle puddle bubble babble</div>;
+            rtnVar = ( 
+                <div>
+                    <div>{this.state.thought}</div>
+                    <br />
+                    <br />
+                    <br />
+                    <button className="refresh" onClick={()=>this.magicBox()}><span role="img" aria-label="refresh">🔄</span></button>
+                </div>
+            );
         }
         return rtnVar;
     }
@@ -83,8 +113,8 @@ export default class Switchboard extends Component {
                     <button className="fork" onClick={() => this.switchView('recordAnew')}>RECORD ANEW</button> 
                         { 
                             this.state.choseClip ?
-                            <button className="plate food" onClick={() => this.play(this.state.url)}>PLAY SELECTED</button> :
-                            <p className="plate"> nothing selected </p> 
+                            <button className="food" onClick={() => this.play(this.state.url)}>PLAY SELECTED</button> :
+                            <p className="plate"><span role="img" aria-label="refresh">🍽️</span></p> 
                         } 
                     <button className="knife" onClick={() => this.switchView('browseClips')}>BROWSE</button>
                 </div>

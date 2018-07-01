@@ -27,7 +27,6 @@ export class MicrophoneRecorder {
     startTime = Date.now();
 
     if(mediaRecorder) {
-      console.log('media recorder exists');
 
       if(audioCtx && audioCtx.state === 'suspended') {
         audioCtx.resume();
@@ -44,7 +43,6 @@ export class MicrophoneRecorder {
       }
     } else {
       if (navigator.mediaDevices) {
-        console.log('getUserMedia supported.');
 
         navigator.mediaDevices.getUserMedia(constraints).then((str) => {
 

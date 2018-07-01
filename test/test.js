@@ -33,7 +33,10 @@ describe('post, find, delete a clip', () => {
     let id;
     beforeEach((done) => {
         db.Clip
-            .create({ originalClip: 'not a real url' })
+            .create({ 
+                originalClip: 'not a real url',
+                awsEtag: 'not a real aws etag'
+            })
             .save()
             .then(instance => {
                 id = instance._id;
@@ -50,6 +53,7 @@ describe('post, find, delete a clip', () => {
                 res.should.have.status(200);
                 res.body.should.be.an('object');
                 res.body.originalClip.should.equal('not a real url');
+                res.body.awsEtag.should.equal('not a real aws etag');
                 if(err) {
                     console.log(err);
                 } else {

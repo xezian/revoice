@@ -7,8 +7,6 @@ export default class Play extends Component {
     }
     render() {
         if(this.props.revBuff){
-            console.log('here lies a reversed buffer');
-            console.log(`revBuff: ${this.props.revBuff}`);
             return (
                 <div>
                     <img onClick={this.handlePlayClick} src={play} alt='play' />

@@ -19,7 +19,7 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
         </header>
         <p>
-          revoice is a simple + fun game to enjoy with your friends
+          revoice is a simple + fun game to enjoy with (or without) your friends
         </p>
         <p>
           <span className="directions">
