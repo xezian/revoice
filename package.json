@@ -7,7 +7,7 @@
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
   "scripts": {
-    "install": "cd client && yarn",
+    "install": "cd client && yarn --ignore-optional",
     "dev": "concurrently \"cd client && yarn start\" \"yarn start:dev\"",
     "start": "node server",
     "start:dev": "nodemon server",
