@@ -9,7 +9,7 @@
 }
 .browse {
     overflow: scroll;
-    height: 50vh;
+    height: 40vh;
     border: 1px solid pink;
     margin-bottom: 20px;
     margin-top: 5px;
