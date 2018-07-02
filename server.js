@@ -3,10 +3,27 @@ const dotenv = require('dotenv');
 const express = require("express");
 const bodyParser = require("body-parser");
 
+function normalizePort(val) {
+  const port = parseInt(val, 10);
+
+  if (Number.isNaN(port)) {
+    // named pipe
+    return val;
+  }
+
+  if (port >= 0) {
+    // port number
+    return port;
+  }
+
+  return false;
+}
+
 // either - or
-const PORT = process.env.PORT || 3030;
+const PORT = normalizePort(process.env.PORT || '3001');;
 
 const app = express();
+app.set('port', PORT);
 
 // config it
 dotenv.config();

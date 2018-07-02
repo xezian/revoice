@@ -1,7 +1,7 @@
 {
   "name": "client",
   "version": "0.1.0",
-  "proxy": "http://localhost:3030",
+  "proxy": "http://localhost:3001",
   "private": true,
   "dependencies": {
     "audiobuffer-to-wav": "^1.0.0",
