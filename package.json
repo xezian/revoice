@@ -6,6 +6,9 @@
   "repository": "git@github.com:xezian/revoice.git",
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
+  "engines": {
+    "node": "8.4.0"
+  },
   "scripts": {
     "install": "cd client && yarn",
     "dev": "concurrently \"cd client && yarn start\" \"yarn start:dev\"",
