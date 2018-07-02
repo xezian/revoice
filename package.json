@@ -7,7 +7,9 @@
   "author": "xezian <xezian@icloud.com>",
   "license": "MIT",
   "engines": {
-    "node": "8.4.0"
+    "node": "8.4.0",
+    "yarn": "1.7.0",
+    "npm": "5.3.0"
   },
   "scripts": {
     "install": "cd client && yarn",
