@@ -12,5 +12,5 @@ const Attempt = ko.Model('Attempt', {
         },
     },
 });
-
+// things are just things
 module.exports = Attempt;
