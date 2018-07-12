@@ -10,6 +10,8 @@ export default class Browse extends Component {
     componentDidMount() {
         this.loadEmUp();
         this.props.emojiState('📖');
+        this.props.toMarquee('It appears you have selected Browse');
+        this.props.directions(['press PLAY to hear a clip', 'press SELECT to expand options for a clip']);
     }
     loadEmUp = (options) => {
         API.getSome(options).then(res => {

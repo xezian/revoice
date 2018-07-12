@@ -1,0 +1,14 @@
+.clipview {
+    height: 40vh;
+}
+.codeblock {
+    position: relative;
+    border: 1px solid black;
+    background-color: white;
+    justify-content: center;
+    word-wrap: break-word;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    width: 50vw;
+}

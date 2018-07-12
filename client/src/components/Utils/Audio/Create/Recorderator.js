@@ -3,6 +3,7 @@ import Play from './Play';
 import Playing from './Playing';
 import Record from './Record';
 import Recording from './Recording';
+import './Recorderator.css';
 import ReverseTheBlobInThisObject from '../Context/ReverseThisBlob';
 
 class Recorderator extends Component {
@@ -67,11 +68,13 @@ class Recorderator extends Component {
         switch(this.state.recordingState){
         case "ready":
             rtnVar = <Record
-                      handleRecord={this.setRecordingState}
+                        directions={(directions)=>this.props.directions(directions)}
+                        handleRecord={this.setRecordingState}
                       />;
             break;
         case "recording":
             rtnVar = <Recording
+                        directions={(directions)=>this.props.directions(directions)}
                         startRecording={this.startRecording}
                         audioBitsPerSecond={this.props.audioBitsPerSecond}
                         onStart={this.onStart}
@@ -81,12 +84,14 @@ class Recorderator extends Component {
             break;
         case "recorded":
             rtnVar = <Play
+                      directions={(directions)=>this.props.directions(directions)}
                       revBuff={this.state.revBuff}
                       handlePlay={this.setRecordingState}
                       />;
             break;
         case "playing":
             rtnVar = <Playing
+                      directions={(directions)=>this.props.directions(directions)}
                       revBuff={this.state.revBuff}
                       handlePlaying={this.setRecordingState}
                       handleSave={(id) => this.props.handleSave(id)}
@@ -110,7 +115,7 @@ class Recorderator extends Component {
         return rtnVar;
     }
     render(){
-        return <div> {this.handleRecordingState()} </div>;
+        return <div className="recorderator"> {this.handleRecordingState()} </div>;
     }
 };
 

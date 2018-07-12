@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import API from '../../API/API';
+import './Clip.css';
 
 export default class Clip extends Component {
     state = {
@@ -13,6 +14,15 @@ export default class Clip extends Component {
     componentDidMount () {
         this.getClip();
         this.props.emojiState('🌀');
+        this.props.toMarquee('Behold, the clip you selcted');
+        this.props.directions([
+            'the button called ORIGINAL plays the backwards clip',
+            'the button called ATTEMPT lets you try and mimic the exact backwards sound which will in turn be flipped around forward',
+            'the numbers on the top three attempts are your score using a DTW algorithm to compare your attempt against the original',
+            'if you click the numbered buttons you will hear the attempts people have made, which have been "reversed forward"',
+            "the box is displaying some info about the audio clip",
+            "click browse to go back"
+        ])
     }
     getClip = () => {
         let clipObj = [];
@@ -51,7 +61,7 @@ export default class Clip extends Component {
     }
     render(){
         return (
-            <div>
+            <div className="clipview">
                 <button onClick={() => this.play(this.state.clipObj[0].originalClip)}>ORIGINAL</button>
                 { this.state.haveClip ?
                     <div>
@@ -67,11 +77,9 @@ export default class Clip extends Component {
                 <button onClick={this.attempt}>ATTEMPT</button>
                 <br/>
                 {this.state.haveClip ? 
-                    <div><code>[{JSON.stringify(this.state.clipObj[0])}]</code></div> :
+                    <div className="codeblock"><code>[{JSON.stringify(this.state.clipObj[0])}]</code></div> :
                     <code>[{this.state.heart}]</code>
                 }
-                <br/>
-                <button onClick={this.backToBrowse}>buttin clicken</button>
             </div>
         ) 
     }

@@ -10,6 +10,7 @@ export default class Switchboard extends Component {
         url: null,
         options: null,
         choseClip: false,
+        audioBPS: 128000,
         boxOfThoughts: [
             "subtle puddle bubble babble",
             "one word clips usually work the best",
@@ -64,16 +65,20 @@ export default class Switchboard extends Component {
         switch(this.state.options){
         case 'recordAnew':
             rtnVar = <Recorderator
+                        toMarquee={(message)=>this.props.toMarquee(message)}
+                        directions={(directions)=>this.props.directions(directions)}
                         emojiState={emoji=>this.props.emojiState(emoji)}
                         handleSave={this.chooseOne}
-                        audioBitsPerSecond={this.props.audioBitsPerSecond}
+                        audioBitsPerSecond={this.state.audioBPS}
                     />;
             break;
         case 'attempt':
             rtnVar = <Recorderator
+                        toMarquee={()=>this.props.toMarquee('You have accessed the RECORDERATOR in ATTEMPT mode')}
+                        directions={(directions)=>this.props.directions(directions)}
                         emojiState={emoji=>this.props.emojiState(emoji)}
                         handleSave={this.chooseOne}
-                        audioBitsPerSecond={this.props.audioBitsPerSecond} 
+                        audioBitsPerSecond={this.state.audioBPS} 
                         haveClip={true}
                         id={this.state.id}
                         url={this.state.url}
@@ -81,6 +86,8 @@ export default class Switchboard extends Component {
             break;
         case 'choiceClip':
             rtnVar = <Clip
+                        toMarquee={()=>this.props.toMarquee('You have accessed the RECORDERATOR in CREATE mode')}
+                        directions={(directions)=>this.props.directions(directions)}
                         emojiState={emoji=>this.props.emojiState(emoji)}
                         clipId={this.state.id}
                         switchView={this.switchView}
@@ -89,6 +96,8 @@ export default class Switchboard extends Component {
             break;
         case 'browseClips':
             rtnVar = <Browse
+                        toMarquee={(message)=>this.props.toMarquee(message)}
+                        directions={(directions)=>this.props.directions(directions)}
                         emojiState={emoji=>this.props.emojiState(emoji)}
                         chooseOne={this.chooseOne}
                         />

@@ -6,6 +6,7 @@
     margin-top: 10px;
     width: 60px;
     height: 70px;
+    border-radius: 16px;
 }
 .browse {
     overflow: scroll;

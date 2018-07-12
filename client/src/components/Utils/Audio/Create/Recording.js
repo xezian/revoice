@@ -7,6 +7,7 @@ export default class Recording extends Component {
     microphoneRecorder  : null,
   }
   componentDidMount(){
+    this.props.directions(['the recording is in progress']);
     this.props.startRecording();
     const { onStart, onStop, audioBitsPerSecond } = this.props;
     const options = {

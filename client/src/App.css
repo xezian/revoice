@@ -31,7 +31,15 @@ button:focus {outline:0;}
 }
 
 .directions {
-  color: #ee33428f
+  color: #ee33428f;
+  width: 40vw;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: left;
+  line-height: 20px;
+}
+.directions li {
+  padding-bottom: 10px;
 }
 
 .record-label {
