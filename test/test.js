@@ -16,7 +16,7 @@ describe('test', () => {
 describe('server good', () => {
     it('should run this test second', (done) => {
         chai.request(server)
-            .get('/')
+            .get('/api/clips/')
             .end((err, res) => {
                 console.log(res.body);
                 res.should.be.an('object');
