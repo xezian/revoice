@@ -18,7 +18,7 @@ S3_BUCKET=NAME_OF_YOUR_S3_BUCKET
 
 ## Deployed version
 
-- I will link a deployed version here soon, once it is deployed
+- Visit the (very much in development) deployed version [here](https://revoice-app.herokuapp.com/)!
 
 There is another repo with an earlier version of just the front end of this app which can be found [here](https://github.com/xezian/react-revoice), and a deployed version of that repo which can be found [here](https://react-revoice.herokuapp.com/)
 
