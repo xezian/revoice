@@ -13,8 +13,34 @@ describe('test', () => {
         done();
     })
 });
+describe('nekodb tests', () => {
+    it('should perform countDocuments method and get a count', (done) => {
+        db.Clip
+            .countDocuments({})
+            .then((count)=>{
+                console.log(count);
+                count.should.be.an('number');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
+    it('should perform estimatedDocumentCount method and get a count', (done) => {
+        db.Clip
+            .estimatedDocumentCount({})
+            .then((count)=>{
+                console.log(count);
+                count.should.be.an('number');
+                done();
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    });
+});
 describe('server good', () => {
-    it('should run this test second', (done) => {
+    it('should get a pile of clips from the api', (done) => {
         chai.request(server)
             .get('/api/clips/')
             .end((err, res) => {

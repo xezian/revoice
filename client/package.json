@@ -4,13 +4,14 @@
   "proxy": "http://localhost:3001",
   "private": true,
   "dependencies": {
+    "ajv": "^6.0.0",
     "audiobuffer-to-wav": "^1.0.0",
     "axios": "^0.18.0",
     "dtw": "^0.0.3",
     "dynamic-time-warping": "^1.0.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
-    "react-scripts": "1.1.4",
+    "react-scripts": "^2.0.1",
     "reversebuffer": "^3.0.1"
   },
   "scripts": {
@@ -18,5 +19,11 @@
     "build": "react-scripts build",
     "test": "CI=true react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }

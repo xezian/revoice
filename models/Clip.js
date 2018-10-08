@@ -1,4 +1,4 @@
-const ko = require('nekodb');
+const ko = require('../nekodb');
 
 const Clip = ko.Model('Clip', {
     originalClip: ko.String,
