@@ -1,4 +1,4 @@
-const ko = require('../nekodb');
+const ko = require('nekodb');
 
 const Attempt = ko.Model('Attempt', {
     attempt: ko.String,
