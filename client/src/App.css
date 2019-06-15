@@ -1,7 +1,9 @@
 body {
   background-color: rgba(81, 224, 243, 0.267);
 }
-button:focus {outline:0;}
+button:focus {
+  outline: 0;
+}
 
 .App {
   text-align: center;
@@ -35,7 +37,7 @@ button:focus {outline:0;}
   width: 40vw;
   margin-right: auto;
   margin-left: auto;
-  text-align: left;
+  text-align: center;
   line-height: 20px;
 }
 .directions li {
@@ -43,10 +45,14 @@ button:focus {outline:0;}
 }
 
 .record-label {
-  color:#420aeb
+  color: #420aeb;
 }
 
 @keyframes App-logo-spin {
-  from { transform: rotate(360deg); }
-  to { transform: rotate(0deg); }
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
 }

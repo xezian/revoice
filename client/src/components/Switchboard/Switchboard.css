@@ -1,29 +1,32 @@
+.swill {
+  padding: 0 0 20px 0;
+}
 .butter {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
 }
 .fork {
-    background-color: #f7e0cb;
-    text-align: left;
+  background-color: #f7e0cb;
+  text-align: left;
 }
 .plate {
-    text-align: center;
-    font-size: 50px;
+  text-align: center;
+  font-size: 50px;
 }
 .refresh {
-    background: none;
-    border: none;
-    font-size: 30px;
+  background: none;
+  border: none;
+  font-size: 30px;
 }
 .food {
-    text-align: center;
-    background-color: #da5ada;
-    border: 1px solid black;
+  text-align: center;
+  background-color: #da5ada;
+  border: 1px solid black;
 }
 .knife {
-    background-color: #f7e0cb;
-    text-align: right;
+  background-color: #f7e0cb;
+  text-align: right;
 }
